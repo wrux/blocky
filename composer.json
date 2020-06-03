@@ -1,46 +1,41 @@
 {
-    "name": "wrux/blocky",
-    "description": "Map a matrix field into an array of blocks to render in twig.",
-    "type": "craft-plugin",
-    "version": "0.0.1",
-    "keywords": [
-        "craft",
-        "cms",
-        "craftcms",
-        "craft-plugin",
-        "block parser"
-    ],
-    "support": {
-        "docs": "https://github.com/wrux/blocky/blob/master/README.md",
-        "issues": "https://github.com/wrux/blocky/issues"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Callum Bonnyman",
-            "homepage": "https://bloke.blog"
-        }
-    ],
-    "require": {
-        "craftcms/cms": "^3.4.0"
-    },
-    "require-dev": {
-      "craftcms/cms": "^3.4.0",
-      "codeception/codeception": "^3.0",
-      "vlucas/phpdotenv": "^3.0"
-    },
-    "autoload": {
-        "psr-4": {
-          "wrux\\blocky\\": "src/"
-        }
-    },
-    "extra": {
-        "name": "Blocky",
-        "handle": "blocky",
-        "developer": "Callum Bonnyman",
-        "developerUrl": "https://bloke.blog",
-        "documentationUrl": "https://github.com/wrux/blocky/blob/master/README.md",
-        "changelogUrl": "https://raw.githubusercontent.com/wrux/blocky/master/CHANGELOG.md",
-        "class": "wrux\\blocky\\Blocky"
+  "name": "wrux/blocky",
+  "description": "Map a matrix field into an array of blocks to render in twig.",
+  "type": "craft-plugin",
+  "version": "0.0.1",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "block parser"
+  ],
+  "support": {
+    "docs": "https://github.com/wrux/blocky/blob/master/README.md",
+    "issues": "https://github.com/wrux/blocky/issues"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Callum Bonnyman",
+      "homepage": "https://bloke.blog"
     }
+  ],
+  "require": {
+    "craftcms/cms": "^3.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "wrux\\blocky\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "Blocky",
+    "handle": "blocky",
+    "developer": "Callum Bonnyman",
+    "developerUrl": "https://bloke.blog",
+    "documentationUrl": "https://github.com/wrux/blocky/blob/master/README.md",
+    "changelogUrl": "https://raw.githubusercontent.com/wrux/blocky/master/CHANGELOG.md",
+    "class": "wrux\\blocky\\Blocky"
+  }
 }
