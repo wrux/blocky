@@ -1,0 +1,18 @@
+<?php declare(strict_types=1);
+
+namespace wrux\blocky\exceptions;
+
+use Craft;
+use yii\base\Exception;
+
+class InvalicBlockException extends Exception {
+  // Public Methods
+  // ===========================================================================
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getName() {
+    return Craft::t('blocky', 'Invalid block.');
+	}
+}
