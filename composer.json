@@ -2,7 +2,7 @@
   "name": "wrux/blocky",
   "description": "Map a matrix field into an array of blocks to render in twig.",
   "type": "craft-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "craft",
     "cms",

@@ -9,6 +9,7 @@ use yii\base\Event;
 use wrux\blocky\variables\BlockParserVariable;
 
 /**
+ * Blocky plugin
  *
  * @author    Callum Bonnyman
  * @package   BlockParser
@@ -44,7 +45,7 @@ class Blocky extends Plugin {
       parent::init();
       self::$plugin = $this;
 
-      // Register our variables
+      // Register the blocky variable.
       Event::on(
         CraftVariable::class,
         CraftVariable::EVENT_INIT,

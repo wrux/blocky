@@ -14,5 +14,5 @@ class BlockTransformerNotFoundException extends Exception {
 	 */
 	public function getName() {
     return Craft::t('blocky', 'Block transformer not found.');
-	},
+	}
 }
