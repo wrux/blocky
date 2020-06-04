@@ -5,6 +5,7 @@ namespace wrux\blocky;
 use Craft;
 use craft\base\Plugin;
 use craft\web\twig\variables\CraftVariable;
+use wrux\blocky\twig\BlocksTwigExtension;
 use yii\base\Event;
 use wrux\blocky\variables\BlockParserVariable;
 
@@ -12,48 +13,47 @@ use wrux\blocky\variables\BlockParserVariable;
  * Blocky plugin
  *
  * @author    Callum Bonnyman
- * @package   BlockParser
+ * @package   Blocky
  * @since     0.0.1
  *
  */
 class Blocky extends Plugin {
-    // Static Properties
-    // =========================================================================
+  // Static Properties
+  // ===========================================================================
 
-    /**
-     * Plugin singelton instance
-     *
-     * @var BlockParser
-     */
-    public static $plugin;
+  /**
+   * Plugin singelton instance
+   *
+   * @var BlockParser
+   */
+  public static $plugin;
 
-    // Public Methods
-    // =========================================================================
+  // Public Methods
+  // ===========================================================================
 
-    /**
-     * Set our $plugin static property to this class so that it can be accessed via
-     * BlockParser::$plugin
-     *
-     * Called after the plugin class is instantiated; do any one-time initialization
-     * here such as hooks and events.
-     *
-     * If you have a '/vendor/autoload.php' file, it will be loaded for you automatically;
-     * you do not need to load it in your init() method.
-     *
-     */
-    public function init() {
-      parent::init();
-      self::$plugin = $this;
+  /**
+   * Setup the plugin
+   */
+  public function init() {
+    parent::init();
+    self::$plugin = $this;
 
-      // Register the blocky variable.
-      Event::on(
-        CraftVariable::class,
-        CraftVariable::EVENT_INIT,
-        function (Event $event) {
-          /** @var CraftVariable $variable */
-          $variable = $event->sender;
-          $variable->set('blocky', BlockParserVariable::class);
-        }
-      );
+    if (!Craft::$app->request->getIsSiteRequest()) {
+      return;
     }
+
+    // Register the blocky variable.
+    Event::on(
+      CraftVariable::class,
+      CraftVariable::EVENT_INIT,
+      function (Event $event) {
+        /** @var CraftVariable $variable */
+        $variable = $event->sender;
+        $variable->set('blocky', BlockParserVariable::class);
+      }
+    );
+
+    // Add the blocks twig tag.
+    Craft::$app->view->registerTwigExtension(new BlocksTwigExtension());
+  }
 }
