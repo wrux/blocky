@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## 0.0.2 - 2020-06-03
 ### Added
-- Cleaned up code and fixed some code style issues
+- Cleaned up plugin code and fixed some code style issues
 
 ## 0.1.0 - 2020-06-05
 ### Added
