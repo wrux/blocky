@@ -60,10 +60,8 @@ class BlocksNode extends Node {
       ->subcompile($this->getNode('blocks'))
       ->raw(");\n");
 
-    // TODO: Use the {{craft.blocky}} variable instead of creating another.
     $compiler
-      ->write("\$blocky = new \\wrux\\blocky\\variables\\BlockParserVariable; \n")
-      ->write("\$context['parsed_blocks'] = \$blocky->parseBlocks(\$context['_blocks']); ");
+      ->write("\$context['parsed_blocks'] = \wrux\blocky\Blocky::\$plugin->parseBlocks(\$context['_blocks']); ");
 
     $compiler
       ->write("\$context['loop'] = [\n")

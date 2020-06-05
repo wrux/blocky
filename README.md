@@ -1,12 +1,14 @@
-# Blocky plugin for Craft CMS 3.x
+# Blocky Plugin for Craft CMS 3.x
 
 Utility plugin for Craft CMS to map Matrix fields.
 
 Blocky handles the logic of parsing your Matrix blocks so you can create cleaner Twig templates.
 
+
 ## Requirements
 
 This plugin requires Craft CMS 3.0.0 or later.
+
 
 ## Installation
 
@@ -26,9 +28,8 @@ To install the plugin, follow these instructions.
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Blocky.
 
-## Block Parser Overview
 
-## Configuring Block Parser
+## Configuring the Block Parser
 
 1. Create `config/blocks.php` inside your Craft project:
 
@@ -65,18 +66,44 @@ To install the plugin, follow these instructions.
     }
     ```
 
-## Using Blocky
 
-Blocky is available at `craft.blocky` in the template.
+## Templating
 
-### Parsing Blocks
+Blocky is available at `craft.blocky` in the template or you can also use the `{% blocks ... %}` Twig tag.
+
+
+### Twig Tag
+
+The `{% blocks %}` tag works similarly to a Twig for loop. It expects a Matrix field and it will handle the parsing and iteration.
+
+**Example:**
 ```twig
-{% set blocks = craft.blocky.parseBlocks(entry.blockComponents) %}
+{% blocks in entry.blockComponents %}
+  <section class="block {{ 'block--' ~ block.type }}">
+    {% include block.template ignore missing with block.context only %}
+  </section>
+{% endblocks %}
 ```
 
-### Example
+**Additional data available in the loop**
 
+| Variable        | Value |
+| --------------- | ----- |
+| loop.index      | The current iteration of the loop. (1 indexed) |
+| loop.index0     | The current iteration of the loop. (0 indexed) |
+| loop.revindex   | The number of iterations from the end of the loop (1 indexed) |
+| loop.revindex0  | The number of iterations from the end of the loop (0 indexed) |
+| loop.first      | True if first iteration |
+| loop.last       | True if last iteration |
+| loop.length     | The number of items in the sequence |
+
+
+### Manually Parsing Blocks
+If you don't want to use the Twig tag, blocks can be parsed manually using `craft.blocky` service. Internally this consumes the same `Blocky::$plugin->parseBlocks()` method. This method allows you to check `blocks.hasBlocks` before the for loop.
+
+**Example:**
 ```twig
+{% set blocks = craft.blocky.parseBlocks(entry.blockComponents) %}
 {% if blocks.hasBlocks %}
   <div class="blocks">
     {% for block in blocks %}
@@ -94,6 +121,5 @@ Blocky is available at `craft.blocky` in the template.
 Some things to do, and ideas for potential features:
 
 * Testing 🔥
-* Create a custom Twig function
 
 Brought to you by [Callum Bonnyman](https://bloke.blog)
