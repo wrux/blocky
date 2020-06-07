@@ -13,6 +13,6 @@ class BlockTransformerNotFoundException extends Exception {
 	 * @inheritdoc
 	 */
 	public function getName() {
-    return Craft::t('blocky', 'Block transformer not found.');
+    return 'Block transformer not found';
 	}
 }
