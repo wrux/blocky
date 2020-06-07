@@ -86,22 +86,14 @@ class Blocky extends Plugin {
       catch  (BlockTransformerNotFoundException $e) {
         // The array contains data for a block with no corresponding parser class.
         Craft::warning(
-          Craft::t(
-            'blocky',
-            'Block transformer not found: {erorr}',
-            ['error' => $e->getMessage()]
-          ),
+          sprintf('Block not found: %s', $e->getMessage()),
           __METHOD__
         );
         continue;
       }
       catch (\Exception $e) {
         Craft::error(
-          Craft::t(
-            'blocky',
-            'There was an error parsing the blocks: {erorr}',
-            ['error' => $e->getMessage()]
-          ),
+          sprintf('Block parser error: %s', $e->getMessage()),
           __METHOD__
         );
         return [];

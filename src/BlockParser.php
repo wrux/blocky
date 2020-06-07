@@ -7,6 +7,8 @@ use IteratorAggregate;
 
 use Craft;
 use craft\base\ElementInterface;
+use wrux\blocky\exceptions\BlockTransformerNotFoundException;
+use wrux\blocky\exceptions\InvalidBlockException;
 
 /**
  * Blocky block parser
@@ -71,21 +73,13 @@ class BlockParser implements IteratorAggregate {
     $block_class = $this->getBlockClass($block->type->handle);
     if (!$block_class || !class_exists($block_class)) {
       throw new BlockTransformerNotFoundException(
-        Craft::t(
-          'blocky',
-          'The block {block} could not be found.',
-          ['block' => $block_class]
-        )
+        sprintf('The block %s could not be found', $block_class)
       );
     }
     $reflect = new \ReflectionClass($block_class);
     if (!$reflect->implementsInterface(BlockInterface::class)) {
-      throw new InvalicBlockException(
-        Craft::t(
-          'blocky',
-          'The block {block} does not implement BlockInterface.',
-          ['block' => $block_class]
-        )
+      throw new InvalidBlockException(
+        sprintf('The block class %s does not implement BlockInterface', $block_class)
       );
     }
     $this->blocks[] = new $block_class($block);
@@ -113,11 +107,7 @@ class BlockParser implements IteratorAggregate {
   private function getBlockClass(string $handle): string {
     if (empty($this->config[$handle])) {
       throw new BlockTransformerNotFoundException(
-        Craft::t(
-          'blocky',
-          'The block handle {handle} could not be found in the config.',
-          ['handle' => $handle]
-        )
+        sprintf('The block handle %s could not be found in the config', $handle)
       );
     }
     return $this->config[$handle];

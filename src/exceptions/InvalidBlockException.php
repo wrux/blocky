@@ -5,7 +5,7 @@ namespace wrux\blocky\exceptions;
 use Craft;
 use yii\base\Exception;
 
-class InvalicBlockException extends Exception {
+class InvalidBlockException extends Exception {
   // Public Methods
   // ===========================================================================
 
@@ -13,6 +13,6 @@ class InvalicBlockException extends Exception {
 	 * @inheritdoc
 	 */
 	public function getName() {
-    return Craft::t('blocky', 'Invalid block.');
+    return 'Invalid block';
 	}
 }
