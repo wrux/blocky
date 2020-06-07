@@ -12,23 +12,23 @@ This plugin requires Craft CMS 3.0.0 or later.
 
 To install the plugin, follow these instructions.
 
-1. Open your terminal and go to your Craft project:
+ 1. Open your terminal and go to your Craft project:
 
     ```bash
     cd /path/to/project
     ```
 
-2. Then tell Composer to load the plugin:
+ 2. Then tell Composer to load the plugin:
 
     ```bash
     composer require wrux/blocky
     ```
 
-3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Blocky.
+ 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Blocky.
 
 ## Configuring the Block Parser
 
-1. Create `config/blocks.php` inside your Craft project:
+ 1. Create `config/blocks.php` inside your Craft project:
 
     ```php
     <?php
@@ -38,7 +38,7 @@ To install the plugin, follow these instructions.
     ];
     ```
 
-2. Somewhere in your project, create block classes for each Matrix block which extends `wrux\blocky\Block`
+ 2. Somewhere in your project, create block classes for each Matrix block which extends `wrux\blocky\Block`
 
     Here's an example block:
 
