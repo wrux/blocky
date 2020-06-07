@@ -9,8 +9,8 @@ use craft\base\ElementInterface;
  *
  * The BlockParser expects a class to implement BlockInterface.
  *
- * Any block class that extends this just needs to define the template property
- * and getContext() method.
+ * Any block class that extends this just needs to define the $blockTemplate
+ * property and getContext() method.
  */
 abstract class Block implements BlockInterface {
   /**
@@ -23,9 +23,9 @@ abstract class Block implements BlockInterface {
   /**
    * Block template.
    *
-   * @var string $template
+   * @var string $blockTtemplate
    */
-  protected string $template;
+  protected string $blockTemplate;
 
   /**
    * Instansiate the block.
@@ -56,6 +56,6 @@ abstract class Block implements BlockInterface {
    *   Name of the block as defined in Craft.
    */
   public function getTemplate(): string {
-    return $this->template;
+    return $this->blockTemplate;
   }
 }
