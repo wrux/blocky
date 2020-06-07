@@ -1,15 +1,12 @@
 <?xml version="1.0"?>
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PHP_CodeSniffer" xsi:noNamespaceSchemaLocation="phpcs.xsd">
-    <description>The coding standard for PHP_CodeSniffer itself.</description>
+    <description>The coding standard for Blocky; taken from PHP_CodeSniffer.</description>
 
     <file>autoload.php</file>
     <file>bin</file>
     <file>scripts</file>
     <file>src</file>
     <file>tests</file>
-
-    <exclude-pattern>*/src/Standards/*/Tests/*\.(inc|css|js)$</exclude-pattern>
-    <exclude-pattern>*/tests/Core/*/*Test\.(inc|css|js)$</exclude-pattern>
 
     <arg name="basepath" value="."/>
     <arg name="colors"/>
@@ -31,6 +28,12 @@
         <exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
         <exclude name="PEAR.Commenting.FileComment.MissingVersion"/>
         <exclude name="PEAR.Commenting.InlineComment"/>
+    </rule>
+
+    <rule ref="PEAR.WhiteSpace.ScopeIndent">
+        <properties>
+            <property name="indent" value="2"/>
+        </properties>
     </rule>
 
     <!-- Include some sniffs from other standards that don't conflict with PEAR -->
@@ -80,21 +83,6 @@
         <properties>
             <property name="error" value="true"/>
         </properties>
-    </rule>
-
-    <!-- We use custom indent rules for arrays -->
-    <rule ref="Generic.Arrays.ArrayIndent"/>
-    <rule ref="Squiz.Arrays.ArrayDeclaration.KeyNotAligned">
-        <severity>0</severity>
-    </rule>
-    <rule ref="Squiz.Arrays.ArrayDeclaration.ValueNotAligned">
-        <severity>0</severity>
-    </rule>
-    <rule ref="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned">
-        <severity>0</severity>
-    </rule>
-    <rule ref="Squiz.Arrays.ArrayDeclaration.CloseBraceNewLine">
-        <severity>0</severity>
     </rule>
 
     <!-- Check var names, but we don't want leading underscores for private vars -->
