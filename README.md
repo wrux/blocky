@@ -112,7 +112,8 @@ If you don't want to use the Twig tag, blocks can be parsed manually using `craf
 ## Block Parser Roadmap
 Some things to do, and ideas for potential features:
 
-* Testing 🔥
-* Skip blocks that return an empty context when using the `{% blocks %}` tag
-* Nested Matrix blocks (Craft 4)
+*  Testing 🔥
+*  Skip blocks that return an empty context when using the `{% blocks %}` tag
+*  Nested Matrix blocks (Craft 4)
+
 Brought to you by [Callum Bonnyman](https://bloke.blog)
