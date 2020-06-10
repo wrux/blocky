@@ -40,7 +40,7 @@ To install the plugin, follow these instructions.
 
 2.   Somewhere in your project, create block classes for each Matrix block which extends `wrux\blocky\Block`
 
-     Here's an example block:
+    Here's an example block:
  
     ```php
     <?php
