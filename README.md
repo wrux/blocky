@@ -30,38 +30,38 @@ To install the plugin, follow these instructions.
 
 1.   Create `config/blocks.php` inside your Craft project:
 
-     ```php
-     <?php
+    ```php
+    <?php
 
-     return [
-       'textBlock' => 'app\blocks\TextBlock',
-     ];
-     ```
+    return [
+      'textBlock' => 'app\blocks\TextBlock',
+    ];
+    ```
 
 2.   Somewhere in your project, create block classes for each Matrix block which extends `wrux\blocky\Block`
- 
+
      Here's an example block:
  
-     ```php
-     <?php
+    ```php
+    <?php
  
-     namespace app\blocks;
- 
-     use wrux\blocky\Block;
- 
-     class TextBlock extends Block {
- 
-       public string $template = 'text.twig';
- 
-       public function getContext(): array {
-         return [
-           'text' => !empty($this->block->contentHtml)
-             ? $this->block->contentHtml->getParsedContent()
-             : NULL,
+    namespace app\blocks;
+
+    use wrux\blocky\Block;
+
+    class TextBlock extends Block {
+
+      public string $template = 'text.twig';
+
+      public function getContext(): array {
+        return [
+          'text' => !empty($this->block->contentHtml)
+            ? $this->block->contentHtml->getParsedContent()
+            : NULL,
          ];
-       }
-     }
-     ```
+      }
+    }
+    ```
 
 ## Templating
 
