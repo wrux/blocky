@@ -33,17 +33,18 @@ class BlocksNode extends Node {
    *
    * @param AbstractExpression $blocks
    * @param Node $body
+   * @param bool $skip_empty
    * @param integer $lineno
    * @param string $tag
    */
-  public function __construct(AbstractExpression $blocks, Node $body, int $lineno, string $tag = null) {
+  public function __construct(AbstractExpression $blocks, Node $body, bool $skip_empty, int $lineno, string $tag = NULL) {
     $this->loop = new BlocksLoopNode($lineno, $tag);
     $body = new Node([$body, $this->loop]);
     $nodes = [
       'body' => $body,
       'blocks' => $blocks,
     ];
-    parent::__construct($nodes, ['with_loop' => true], $lineno, $tag);
+    parent::__construct($nodes, ['skip_empty' => $skip_empty], $lineno, $tag);
   }
 
   /**
@@ -84,9 +85,25 @@ class BlocksNode extends Node {
 
     $compiler
       ->write("foreach (\$context['parsed_blocks'] as \$block) {\n")
-      ->indent()
-      ->write("\$context['block'] = \$block; \n")
-      ->subcompile($this->getNode('body'), false)
+      ->write("\$block_context = \$block->getContext();\n")
+      ->indent();
+
+    // Skip blocks that return an empty context.
+    if ($this->getAttribute('skip_empty')) {
+      $compiler
+        ->write("if (empty(\$block_context)) {\n")
+          ->indent()
+          ->write("continue;\n")
+          ->outdent()
+        ->write("}\n");
+    }
+
+    $compiler
+      ->write("\$context['block'] = \$block;\n")
+      ->write("\$context['type'] = \$block->getType();\n")
+      ->write("\$context['template'] = \$block->getTemplate();\n")
+      ->write("\$context['context'] = \$block_context;\n")
+      ->subcompile($this->getNode('body'), FALSE)
       ->outdent()
       ->write("}\n\n");
   }

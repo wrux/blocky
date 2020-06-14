@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.0 - 2020-__-__
+### Added
+- Skip empty blocks in the blocks tag using the `skip empty` keyword.
+- Variables `context`, `template`, `type` are accessible inside the blocks tag
+
 ## 0.1.2 - 2020-07-07
 ### Changed
 - Fixed `block.template` not accessible in the template because Twig was trying to access the protected `block.template` property instead of `block.getTemplate()`
@@ -12,11 +17,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 0.1.1 - 2020-07-07
 ### Changed
 - Typo in class name `InvalicBlockException`.
-- The class Blocky is not correctly importing the exception classes.
+- The class Blocky is not correctly importing the exception classes
 
 ### Removed
-- Translation files, as these only contained exception translations.
-- All instances of `Craft::t()` in exceptions.
+- Translation files, as these only contained exception translations
+- All instances of `Craft::t()` in exceptions
 
 ## 0.1.0 - 2020-06-05
 ### Added
