@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 1.0.0 - 2020-__-__
 ### Added
 - Skip empty blocks in the blocks tag using the `skip empty` keyword.
-- Variables `context`, `template`, `type` are accessible inside the blocks tag.
+- Variables `context`, `template`, `type` are accessible inside the blocks tag
 
 ## 0.1.2 - 2020-07-07
 ### Changed
@@ -17,11 +17,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 0.1.1 - 2020-07-07
 ### Changed
 - Typo in class name `InvalicBlockException`.
-- The class Blocky is not correctly importing the exception classes.
+- The class Blocky is not correctly importing the exception classes
 
 ### Removed
-- Translation files, as these only contained exception translations.
-- All instances of `Craft::t()` in exceptions.
+- Translation files, as these only contained exception translations
+- All instances of `Craft::t()` in exceptions
 
 ## 0.1.0 - 2020-06-05
 ### Added
