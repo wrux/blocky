@@ -4,7 +4,6 @@ namespace wrux\blocky\twig\tokenparsers;
 
 use Twig\Node\Node;
 use Twig\TokenParser\AbstractTokenParser;
-use Twig\Node\Expression\AssignNameExpression;
 use Twig\Node\PrintNode;
 use Twig\Token;
 use wrux\blocky\twig\nodes\BlocksNode;
@@ -30,6 +29,12 @@ class BlocksTokenParser extends AbstractTokenParser {
     $stream->expect(Token::OPERATOR_TYPE, 'in');
     $blocks = $this->parser->getExpressionParser()->parseExpression();
 
+    $skip_empty = FALSE;
+    if ($stream->nextIf(Token::NAME_TYPE, 'skip')) {
+      $stream->expect(Token::NAME_TYPE, 'empty');
+      $skip_empty = TRUE;
+    }
+
     if ($stream->nextIf(Token::BLOCK_END_TYPE)) {
       $body = $this->parser->subparse([$this, 'decideBlocksEnd'], true);
       if ($token = $stream->nextIf(Token::NAME_TYPE)) {
@@ -42,7 +47,7 @@ class BlocksTokenParser extends AbstractTokenParser {
     }
     $stream->expect(Token::BLOCK_END_TYPE);
 
-    return new BlocksNode($blocks, $body, $lineno, $this->getTag());
+    return new BlocksNode($blocks, $body, $skip_empty, $lineno, $this->getTag());
   }
 
   /**

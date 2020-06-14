@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.0 - 2020-__-__
+### Added
+- Skip empty blocks in the blocks tag using the `skip empty` keyword.
+- Variables `context`, `template`, `type` are accessible inside the blocks tag.
+
 ## 0.1.2 - 2020-07-07
 ### Changed
 - Fixed `block.template` not accessible in the template because Twig was trying to access the protected `block.template` property instead of `block.getTemplate()`

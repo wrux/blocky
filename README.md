@@ -79,16 +79,32 @@ The `{% blocks %}` tag works similarly to a Twig for loop. It expects a Matrix f
 **Example:**
 ```twig
 {% blocks in entry.blockComponents %}
-  <section class="block {{ 'block--' ~ block.type }}">
-    {% include block.template ignore missing with block.context only %}
+  <section class="block {{ 'block--' ~ type }}">
+    {% include template with context only %}
   </section>
 {% endblocks %}
 ```
 
-**Additional data available in the loop**
+**Example with skipping empty blocks**
+You can use `skip empty` in the opening tag. This will skip blocks that return an empty context.
+
+```twig
+{% blocks in entry.blockComponents skip empty %}
+  <section class="block {{ 'block--' ~ type }}">
+    {% include template with context only %}
+  </section>
+{% endblocks %}
+```
+
+
+**Data available in the loop**
 
 | Variable        | Value |
 | --------------- | ----- |
+| block           | The block object. |
+| template        | The data returned from the `getTemplate()` method. |
+| type            | The value returned from the `getType()` method. |
+| context         | The context returnd from the `getContext()` method |
 | loop.index      | The current iteration of the loop. (1 indexed) |
 | loop.index0     | The current iteration of the loop. (0 indexed) |
 | loop.revindex   | The number of iterations from the end of the loop (1 indexed) |
@@ -115,9 +131,7 @@ If you don't want to use the Twig tag, blocks can be parsed manually using `craf
 {% endif %}
 ```
 
-
 ## Block Parser Roadmap
-
 Some things to do, and ideas for potential features:
 
 * Testing 🔥

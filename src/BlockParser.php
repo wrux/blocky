@@ -50,8 +50,8 @@ class BlockParser implements IteratorAggregate {
    * In the twig template you can use the following example:
    * ```
    * {% for block in blocks %}
-   *   <section class="block {{ 'block--' ~ block.type }}">
-   *     {% include block.template ignore missing with block.context only %}
+   *   <section class="block {{ 'block--' ~ type }}">
+   *     {% include template ignore missing with context only %}
    *   </section>
    * {% endfor %}
    * ```
