@@ -77,6 +77,7 @@ Blocky is available at `craft.blocky` in the template or you can also use the `{
 The `{% blocks %}` tag works similarly to a Twig for loop. It expects a Matrix field and it will handle the parsing and iteration.
 
 **Example:**
+
 ```twig
 {% blocks in entry.blockComponents %}
   <section class="block {{ 'block--' ~ type }}">
@@ -85,7 +86,8 @@ The `{% blocks %}` tag works similarly to a Twig for loop. It expects a Matrix f
 {% endblocks %}
 ```
 
-**Example with skipping empty blocks**
+**Example with skipping empty blocks:**
+
 You can use `skip empty` in the opening tag. This will skip blocks that return an empty context.
 
 ```twig
