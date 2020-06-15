@@ -1,18 +1,27 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace wrux\blocky\exceptions;
 
-use Craft;
 use yii\base\Exception;
 
-class BlockTransformerNotFoundException extends Exception {
+/**
+ * Block transformer not found.
+ *
+ * @package Blocky
+ * @since 0.0.1
+ */
+class BlockTransformerNotFoundException extends Exception
+{
   // Public Methods
   // ===========================================================================
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getName() {
+  /**
+   * @inheritdoc
+   */
+  public function getName(): string
+  {
     return 'Block transformer not found';
-	}
+  }
 }

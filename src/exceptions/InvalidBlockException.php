@@ -1,18 +1,27 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace wrux\blocky\exceptions;
 
-use Craft;
 use yii\base\Exception;
 
-class InvalidBlockException extends Exception {
+/**
+ * Error parsing the block.
+ *
+ * @package Blocky
+ * @since 0.0.1
+ */
+class InvalidBlockException extends Exception
+{
   // Public Methods
   // ===========================================================================
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getName() {
+  /**
+   * @inheritdoc
+   */
+  public function getName(): string
+  {
     return 'Invalid block';
-	}
+  }
 }

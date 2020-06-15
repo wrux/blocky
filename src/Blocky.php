@@ -16,19 +16,19 @@ use wrux\blocky\variables\BlockParserVariable;
 /**
  * Blocky plugin
  *
- * @author    Callum Bonnyman
- * @package   Blocky
- * @since     0.0.1
+ * @package Blocky
+ * @since 0.0.1
  *
  */
-class Blocky extends Plugin {
+class Blocky extends Plugin
+{
   // Static Properties
   // ===========================================================================
 
   /**
-   * Plugin singelton instance
+   * Plugin singelton instance.
    *
-   * @var Blocky
+   * @var static \wrux\blocky\Blocky $plugin
    */
   public static Blocky $plugin;
 
@@ -38,7 +38,8 @@ class Blocky extends Plugin {
   /**
    * Setup the plugin
    */
-  public function init() {
+  public function init()
+  {
     parent::init();
     self::$plugin = $this;
 
@@ -48,27 +49,30 @@ class Blocky extends Plugin {
 
     // Register the blocky variable.
     Event::on(
-      CraftVariable::class,
-      CraftVariable::EVENT_INIT,
-      function (Event $event) {
-        /** @var CraftVariable $variable */
-        $variable = $event->sender;
-        $variable->set('blocky', BlockParserVariable::class);
-      }
+        CraftVariable::class,
+        CraftVariable::EVENT_INIT,
+        function (Event $event) {
+          /** @var CraftVariable $variable */
+          $variable = $event->sender;
+          $variable->set('blocky', BlockParserVariable::class);
+        }
     );
 
-    // Add the blocks twig tag.
+    // Add the `blocks` Twig tag.
     Craft::$app->view->registerTwigExtension(new BlocksTwigExtension());
   }
 
   /**
-   * Parse the Matrix blocks array
+   * Parse the Matrix blocks array.
    *
    * @param array|MatrixBlockQuery $blocks
-   * @return void
+   *
+   * @return IteratorAggregate|array
+   *   Iterable block object.
    */
-  public function parseBlocks($blocks) {
-    // If the matrix block was not egar loaded then execute the query.
+  public function parseBlocks($blocks)
+  {
+    // If the matrix block was not eagar loaded then execute the query.
     if ($blocks instanceof MatrixBlockQuery) {
       $blocks = $blocks->all();
     }
@@ -82,19 +86,17 @@ class Blocky extends Plugin {
       }
       try {
         $block_parser->addBlock($block);
-      }
-      catch  (BlockTransformerNotFoundException $e) {
-        // The array contains data for a block with no corresponding parser class.
+      } catch (BlockTransformerNotFoundException $e) {
+        // Block found, but with no corresponding parser class.
         Craft::warning(
-          sprintf('Block not found: %s', $e->getMessage()),
-          __METHOD__
+            sprintf('Block not found: %s', $e->getMessage()),
+            __METHOD__
         );
         continue;
-      }
-      catch (\Exception $e) {
+      } catch (\Exception $e) {
         Craft::error(
-          sprintf('Block parser error: %s', $e->getMessage()),
-          __METHOD__
+            sprintf('Block parser error: %s', $e->getMessage()),
+            __METHOD__
         );
         return [];
       }
