@@ -22,9 +22,11 @@ class BlocksTokenParser extends AbstractTokenParser
   // ===========================================================================
 
   /**
-   * @inheritDoc
+   * Parse the Token.
    *
-   * @return wrux\blocky\twig\nodes\BlocksNode
+   * @param \Twig\Token $token
+   *
+   * @return \wrux\blocky\twig\nodes\BlocksNode
    */
   public function parse(Token $token): BlocksNode
   {

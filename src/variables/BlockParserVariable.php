@@ -22,9 +22,9 @@ class BlockParserVariable
   /**
    * Parse the Matrix blocks array.
    *
-   * @param array|MatrixBlockQuery $blocks
+   * @param mixed $blocks
    *
-   * @return IteratorAggregate|array
+   * @return mixed
    *   Iterable block object.
    */
   public function parseBlocks($blocks)

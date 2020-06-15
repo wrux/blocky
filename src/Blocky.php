@@ -3,9 +3,9 @@
 namespace wrux\blocky;
 
 use Craft;
-use craft\base\BlockElementInterface;
 use craft\base\Plugin;
 use craft\elements\db\MatrixBlockQuery;
+use craft\elements\MatrixBlock;
 use craft\web\twig\variables\CraftVariable;
 use wrux\blocky\twig\BlocksTwigExtension;
 use yii\base\Event;
@@ -67,7 +67,7 @@ class Blocky extends Plugin
    *
    * @param array|MatrixBlockQuery $blocks
    *
-   * @return IteratorAggregate|array
+   * @return mixed
    *   Iterable block object.
    */
   public function parseBlocks($blocks)
@@ -81,7 +81,7 @@ class Blocky extends Plugin
     }
     $block_parser = new BlockParser;
     foreach ($blocks as $block) {
-      if (!$block instanceof BlockElementInterface) {
+      if (!$block instanceof MatrixBlock) {
         continue;
       }
       try {

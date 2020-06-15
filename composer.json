@@ -21,6 +21,9 @@
       "homepage": "https://bloke.blog"
     }
   ],
+  "scripts": {
+    "phpstan": "vendor/bin/phpstan analyse ./src --level=5"
+  },
   "require": {
     "craftcms/cms": "^3.4.0",
     "php": ">=7.4.0"
@@ -38,5 +41,8 @@
     "documentationUrl": "https://github.com/wrux/blocky/blob/master/README.md",
     "changelogUrl": "https://raw.githubusercontent.com/wrux/blocky/master/CHANGELOG.md",
     "class": "wrux\\blocky\\Blocky"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^0.12.29"
   }
 }
