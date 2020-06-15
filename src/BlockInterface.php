@@ -1,11 +1,19 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace wrux\blocky;
 
 /**
+ * Block interface.
+ *
  * Block Interface defines a common interface to be used for all Block classes.
+ *
+ * @package Blocky
+ * @since 0.0.1
  */
-interface BlockInterface {
+interface BlockInterface
+{
   /**
    * Return the block template.
    *

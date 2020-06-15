@@ -1,22 +1,28 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace wrux\blocky;
 
 use craft\base\ElementInterface;
 
 /**
- * Abstract block class
+ * Abstract block class.
  *
  * The BlockParser expects a class to implement BlockInterface.
  *
  * Any block class that extends this just needs to define the $blockTemplate
  * property and getContext() method.
+ *
+ * @package Blocky
+ * @since 0.0.1
  */
-abstract class Block implements BlockInterface {
+abstract class Block implements BlockInterface
+{
   /**
    * Block data.
    *
-   * @var craft\base\ElementInterface $block
+   * @var \craft\base\ElementInterface $block
    */
   protected ElementInterface $block;
 
@@ -30,9 +36,10 @@ abstract class Block implements BlockInterface {
   /**
    * Instansiate the block.
    *
-   * @param craft\base\ElementInterface $block
+   * @param \craft\base\ElementInterface $block
    */
-  public function __construct(ElementInterface $block) {
+  public function __construct(ElementInterface $block)
+  {
     $this->block = $block;
   }
 
@@ -45,7 +52,8 @@ abstract class Block implements BlockInterface {
    * @return string
    *   Name of the block as defined in Craft.
    */
-  public function getType(): string {
+  public function getType(): string
+  {
     return $this->block->type->handle;
   }
 
@@ -55,7 +63,8 @@ abstract class Block implements BlockInterface {
    * @return string
    *   Name of the block as defined in Craft.
    */
-  public function getTemplate(): string {
+  public function getTemplate(): string
+  {
     return $this->blockTemplate;
   }
 }

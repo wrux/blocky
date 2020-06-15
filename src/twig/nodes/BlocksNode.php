@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace wrux\blocky\twig\nodes;
 
 use Twig\Compiler;
@@ -7,21 +9,20 @@ use Twig\Node\Expression\AbstractExpression;
 use Twig\Node\Node;
 
 /**
- * Blocky plugin
+ * Compiles the `{% blocks %}` Twig tag.
  *
- * @author    Callum Bonnyman
- * @package   Blocky
- * @since     0.1.0
- *
+ * @package Blocky
+ * @since 0.1.0
  */
-class BlocksNode extends Node {
+class BlocksNode extends Node
+{
   // Private Properties
   // ===========================================================================
 
   /**
-   * Loop iteration node
+   * Loop iteration node.
    *
-   * @var BlocksLoopNode
+   * @var \wrux\blocky\twig\nodes\BlocksLoopNode
    */
   private BlocksLoopNode $loop;
 
@@ -31,13 +32,14 @@ class BlocksNode extends Node {
   /**
    * Instansiate the Node
    *
-   * @param AbstractExpression $blocks
-   * @param Node $body
+   * @param \Twig\Node\Expression\AbstractExpression $blocks
+   * @param \Twig\Node\Node $body
    * @param bool $skip_empty
    * @param integer $lineno
    * @param string $tag
    */
-  public function __construct(AbstractExpression $blocks, Node $body, bool $skip_empty, int $lineno, string $tag = NULL) {
+  public function __construct(AbstractExpression $blocks, Node $body, bool $skip_empty, int $lineno, string $tag = null)
+  {
     $this->loop = new BlocksLoopNode($lineno, $tag);
     $body = new Node([$body, $this->loop]);
     $nodes = [
@@ -48,12 +50,13 @@ class BlocksNode extends Node {
   }
 
   /**
-   * Compile the node
+   * Compile the node.
    *
-   * @param Compiler $compiler
-   * @return void
+   * @param \Twig\Compiler $compiler
+   *   Twig compiler object.
    */
-  public function compile(Compiler $compiler): void {
+  public function compile(Compiler $compiler): void
+  {
     $compiler
       ->addDebugInfo($this)
       ->write("\$context['_parent'] = \$context;\n")
@@ -73,7 +76,9 @@ class BlocksNode extends Node {
       ->write("];\n");
 
     $compiler
-      ->write("if (is_array(\$context['_blocks']) || (is_object(\$context['_blocks']) && \$context['_blocks'] instanceof \Countable)) {\n")
+      ->write("if (is_array(\$context['_blocks']) || ")
+      ->write("(is_object(\$context['_blocks']) && \$context['_blocks'] ")
+      ->write("instanceof \Countable)) {\n")
       ->indent()
       ->write("\$length = count(\$context['_blocks']);\n")
       ->write("\$context['loop']['revindex0'] = \$length - 1;\n")
@@ -103,7 +108,7 @@ class BlocksNode extends Node {
       ->write("\$context['type'] = \$block->getType();\n")
       ->write("\$context['template'] = \$block->getTemplate();\n")
       ->write("\$context['context'] = \$block_context;\n")
-      ->subcompile($this->getNode('body'), FALSE)
+      ->subcompile($this->getNode('body'), false)
       ->outdent()
       ->write("}\n\n");
   }

@@ -1,26 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace wrux\blocky\twig;
 
 use Twig\Extension\AbstractExtension;
 use wrux\blocky\twig\tokenparsers\BlocksTokenParser;
 
 /**
- * Blocky plugin
+ * Blocky custom Twig functionality.
  *
- * @author    Callum Bonnyman
- * @package   Blocky
- * @since     0.1.0
- *
+ * @package Blocky
+ * @since 0.1.0
  */
-class BlocksTwigExtension extends AbstractExtension {
+class BlocksTwigExtension extends AbstractExtension
+{
+  // Public Methods
+  // =========================================================================
+
   /**
    * Returns the Blocky token parsers.
    *
-   * @implements the twig tag {% blocks in ... %}
-   * @return void
+   * Implements the twig tag {% blocks in ... %}
+   *
+   * @return array
+   *   Custom Twig tag token parsers.
    */
-  public function getTokenParsers() {
+  public function getTokenParsers(): array
+  {
     return [new BlocksTokenParser()];
   }
 }

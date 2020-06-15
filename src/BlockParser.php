@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace wrux\blocky;
 
@@ -11,23 +13,27 @@ use wrux\blocky\exceptions\BlockTransformerNotFoundException;
 use wrux\blocky\exceptions\InvalidBlockException;
 
 /**
- * Blocky block parser
+ * Block parser.
  *
- * The block parser maps out each of the Matrix blocks.
+ * Handles the logic to parse in each of the Matrix blocks and returns a
+ * mapped iterable object.
  *
- * @author    Callum Bonnyman
- * @package   Blocky
- * @since     0.0.1
- *
+ * @package Blocky
+ * @since 0.0.1
  */
-class BlockParser implements IteratorAggregate {
+class BlockParser implements IteratorAggregate
+{
   /**
-   * @var array Block config loaded from app/blocks.php.
+   * Block config loaded from `app/blocks.php`.
+   *
+   * @var array
    */
   private array $config;
 
   /**
-   * @var array Instansiated blocks.
+   * Instansiated blocks.
+   *
+   * @var array
    */
   private array $blocks = [];
 
@@ -37,7 +43,8 @@ class BlockParser implements IteratorAggregate {
   /**
    * Instansiate the class and get the block config values.
    */
-  public function __construct() {
+  public function __construct()
+  {
     $this->config = Craft::$app->config->getConfigFromFile('blocks');
   }
 
@@ -58,28 +65,34 @@ class BlockParser implements IteratorAggregate {
    *
    * @return ArrayIterator
    */
-  public function getIterator(): ArrayIterator {
+  public function getIterator(): ArrayIterator
+  {
     return new ArrayIterator($this->blocks);
   }
 
   /**
    * Adds a block to the parser.
    *
-   * @param ElementInterface $block
-   * @throws BlockTransformerNotFoundException if no corresponding block parser class is found.
-   * @return void
+   * @param \craft\base\ElementInterface $block Matrix block.
+   *
+   * @throws \wrux\blocky\exceptions\BlockTransformerNotFoundException
+   *   If no corresponding block parser class is found.
    */
-  public function addBlock(ElementInterface $block): void {
+  public function addBlock(ElementInterface $block): void
+  {
     $block_class = $this->getBlockClass($block->type->handle);
     if (!$block_class || !class_exists($block_class)) {
       throw new BlockTransformerNotFoundException(
-        sprintf('The block %s could not be found', $block_class)
+          sprintf('The block %s could not be found', $block_class)
       );
     }
     $reflect = new \ReflectionClass($block_class);
     if (!$reflect->implementsInterface(BlockInterface::class)) {
       throw new InvalidBlockException(
-        sprintf('The block class %s does not implement BlockInterface', $block_class)
+          sprintf(
+              'The block class %s does not implement BlockInterface',
+              $block_class
+          )
       );
     }
     $this->blocks[] = new $block_class($block);
@@ -90,24 +103,32 @@ class BlockParser implements IteratorAggregate {
    *
    * @return bool
    */
-  public function hasBlocks(): bool {
+  public function hasBlocks(): bool
+  {
     return count($this->blocks) > 0;
   }
 
   // Private Methods
-  // ===========================================================================
+  // =========================================================================
 
   /**
    * Returns the block class reference from the configuration.
    *
-   * @param string $handle
-   * @throws BlockTransformerNotFoundException if no corresponding block parser is found in the config
+   * @param string $handle The Matrix block handle.
+   *
+   * @throws \wrux\blocky\exceptions\BlockTransformerNotFoundException
+   *   If no corresponding block parser is found in the config
    * @return string
+   *   Block class namespace.
    */
-  private function getBlockClass(string $handle): string {
+  private function getBlockClass(string $handle): string
+  {
     if (empty($this->config[$handle])) {
       throw new BlockTransformerNotFoundException(
-        sprintf('The block handle %s could not be found in the config', $handle)
+          sprintf(
+              'The block handle %s could not be found in the config',
+              $handle
+          )
       );
     }
     return $this->config[$handle];

@@ -1,26 +1,34 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace wrux\blocky\variables;
 
 use wrux\blocky\Blocky;
 
 /**
- * Block Parser Variable
+ * Block Parser Variable.
  *
- * Craft allows plugins to provide their own template variables, accessible from
- * the {{ craft }} global variable (e.g. {{ craft.blocks }}).
+ * This class is available at `{{ craft.blocky }}` in the template.
  *
- * https://craftcms.com/docs/plugins/variables
- *
- * @author    Callum Bonnyman
- * @package   Blocky
- * @since     0.0.1
+ * @package Blocky
+ * @since 0.1.0
  */
-class BlockParserVariable {
+class BlockParserVariable
+{
   // Public Methods
   // =========================================================================
 
-  public function parseBlocks($blocks) {
+  /**
+   * Parse the Matrix blocks array.
+   *
+   * @param array|MatrixBlockQuery $blocks
+   *
+   * @return IteratorAggregate|array
+   *   Iterable block object.
+   */
+  public function parseBlocks($blocks)
+  {
     return Blocky::$plugin->parseBlocks($blocks);
   }
 }
