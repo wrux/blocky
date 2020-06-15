@@ -4,10 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 1.0.0 - 2020-__-__
+## 1.0.0 - 2020-06-16
 ### Added
-- Skip empty blocks in the blocks tag using the `skip empty` keyword.
+- Skip empty blocks in the blocks tag using the `skip empty` keyword
 - Variables `context`, `template`, `type` are accessible inside the blocks tag
+- PHPCS PSR2 rules
+- PHPStan rules
+- Github actions to test PHPCS and PHPStan
 
 ## 0.1.2 - 2020-07-07
 ### Changed
@@ -16,7 +19,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## 0.1.1 - 2020-07-07
 ### Changed
-- Typo in class name `InvalicBlockException`.
+- Typo in class name `InvalicBlockException`
 - The class Blocky is not correctly importing the exception classes
 
 ### Removed
