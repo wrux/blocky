@@ -54,7 +54,7 @@ To install the plugin, follow these instructions.
 
     class TextBlock extends Block {
 
-      public string $template = 'text.twig';
+      protected string $blockTemplate = 'text.twig';
 
       public function getContext(): array {
         return [
