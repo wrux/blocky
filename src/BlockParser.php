@@ -8,7 +8,7 @@ use ArrayIterator;
 use IteratorAggregate;
 
 use Craft;
-use craft\base\ElementInterface;
+use craft\elements\MatrixBlock;
 use wrux\blocky\exceptions\BlockTransformerNotFoundException;
 use wrux\blocky\exceptions\InvalidBlockException;
 
@@ -73,12 +73,12 @@ class BlockParser implements IteratorAggregate
   /**
    * Adds a block to the parser.
    *
-   * @param \craft\base\ElementInterface $block Matrix block.
+   * @param \craft\elements\MatrixBlock $block Matrix block.
    *
    * @throws \wrux\blocky\exceptions\BlockTransformerNotFoundException
    *   If no corresponding block parser class is found.
    */
-  public function addBlock(ElementInterface $block): void
+  public function addBlock(MatrixBlock $block): void
   {
     $block_class = $this->getBlockClass($block->type->handle);
     if (!$block_class || !class_exists($block_class)) {

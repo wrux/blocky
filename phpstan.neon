@@ -1,3 +1,5 @@
 parameters:
-	autoload_files:
-		- vendor/autoload.php
+  paths:
+    - src
+  bootstrapFiles:
+    - vendor/craftcms/cms/bootstrap/console.php
