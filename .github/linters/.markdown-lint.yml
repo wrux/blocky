@@ -1,0 +1,5 @@
+# Linter rules doc:
+# - https://github.com/DavidAnson/markdownlint
+#
+
+MD024: false # Changelog contains multiple Added and Changed headings.
