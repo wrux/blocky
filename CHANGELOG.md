@@ -2,7 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
+project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.1
 
@@ -24,7 +25,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Changed
 
-- Fixed `block.template` not accessible in the template because Twig was trying to access the protected `block.template` property instead of `block.getTemplate()`
+- Fixed `block.template` not accessible in the template because Twig was trying
+  to access the protected `block.template` property instead of
+  `block.getTemplate()`
 - Fixed wrong order in CHANGELOG.md
 
 ## 0.1.1 - 2020-07-07
@@ -47,8 +50,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Changed
 
-- Moved the main block parser functionality so that it is now available at `Blocky::$plugin->parseBlocks()`
-  - This is consumed by the new `{% blocks %}` Twig tag and `{% craft.blocky.blockparser() %}`
+- Moved the main block parser functionality so that it is now available at
+  `Blocky::$plugin->parseBlocks()`
+  - This is consumed by the new `{% blocks %}` Twig tag and
+    `{% craft.blocky.blockparser() %}`
 
 ## 0.0.2 - 2020-06-03
 

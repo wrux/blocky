@@ -2,7 +2,8 @@
 
 Utility plugin for Craft CMS to map Matrix fields.
 
-Blocky handles the logic of parsing your Matrix blocks so you can create cleaner Twig templates.
+Blocky handles the logic of parsing your Matrix blocks so you can create cleaner
+Twig templates.
 
 ## Requirements
 
@@ -24,7 +25,8 @@ To install the plugin, follow these instructions.
     composer require wrux/blocky
     ```
 
-3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Blocky.
+3. In the Control Panel, go to Settings → Plugins and click the “Install” button
+   for Blocky.
 
 ## Configuring the Block Parser
 
@@ -38,7 +40,8 @@ To install the plugin, follow these instructions.
     ];
     ```
 
-2. Somewhere in your project, create block classes for each Matrix block which extends `wrux\blocky\Block`
+2. Somewhere in your project, create block classes for each Matrix block which
+   extends `wrux\blocky\Block`
 
     Here's an example block:
 
@@ -65,11 +68,13 @@ To install the plugin, follow these instructions.
 
 ## Templating
 
-Blocky is available at `craft.blocky` in the template or you can also use the `{% blocks ... %}` Twig tag.
+Blocky is available at `craft.blocky` in the template or you can also use the
+`{% blocks ... %}` Twig tag.
 
 ### Twig Tag
 
-The `{% blocks %}` tag works similarly to a Twig for loop. It expects a Matrix field and it will handle the parsing and iteration.
+The `{% blocks %}` tag works similarly to a Twig for loop. It expects a Matrix
+field and it will handle the parsing and iteration.
 
 **Example:**
 
@@ -83,7 +88,8 @@ The `{% blocks %}` tag works similarly to a Twig for loop. It expects a Matrix f
 
 **Example with skipping empty blocks:**
 
-You can use `skip empty` in the opening tag. This will skip blocks that return an empty context.
+You can use `skip empty` in the opening tag. This will skip blocks that return
+an empty context.
 
 ```twig
 {% blocks in entry.blockComponents skip empty %}
@@ -105,15 +111,20 @@ The following variables are available inside the `{% blocks %}` tag.
 | context         | The context returned from the `getContext()` method |
 | loop.index      | The current iteration of the loop. (1 indexed) |
 | loop.index0     | The current iteration of the loop. (0 indexed) |
-| loop.revindex   | The number of iterations from the end of the loop (1 indexed) |
-| loop.revindex0  | The number of iterations from the end of the loop (0 indexed) |
+| loop.revindex   |
+  The number of iterations from the end of the loop (1 indexed) |
+| loop.revindex0  |
+  The number of iterations from the end of the loop (0 indexed) |
 | loop.first      | True if first iteration |
 | loop.last       | True if last iteration |
 | loop.length     | The number of items in the sequence |
 
 ### Manually Parsing Blocks
 
-If you don't want to use the Twig tag, blocks can be parsed manually using `craft.blocky` service. Internally this consumes the same `Blocky::$plugin->parseBlocks()` method. This method allows you to check `blocks.hasBlocks` before the for loop.
+If you don't want to use the Twig tag, blocks can be parsed manually using
+`craft.blocky` service. Internally this consumes the same
+`Blocky::$plugin->parseBlocks()` method. This method allows you to check
+`blocks.hasBlocks` before the for loop.
 
 **Example:**
 
@@ -135,6 +146,6 @@ If you don't want to use the Twig tag, blocks can be parsed manually using `craf
 Some things to do, and ideas for potential features:
 
 * Testing 🔥
-* Nested blocks with the release of CraftCMS 4.0
+* Nested blocks with the release of CraftCMS 4.0.
 
 Brought to you by [Callum Bonnyman](https://bloke.blog)
