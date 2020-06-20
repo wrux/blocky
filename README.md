@@ -4,11 +4,9 @@ Utility plugin for Craft CMS to map Matrix fields.
 
 Blocky handles the logic of parsing your Matrix blocks so you can create cleaner Twig templates.
 
-
 ## Requirements
 
 This plugin requires Craft CMS 3.0.0 or later.
-
 
 ## Installation
 
@@ -27,7 +25,6 @@ To install the plugin, follow these instructions.
     ```
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Blocky.
-
 
 ## Configuring the Block Parser
 
@@ -66,11 +63,9 @@ To install the plugin, follow these instructions.
     }
     ```
 
-
 ## Templating
 
 Blocky is available at `craft.blocky` in the template or you can also use the `{% blocks ... %}` Twig tag.
-
 
 ### Twig Tag
 
@@ -98,8 +93,9 @@ You can use `skip empty` in the opening tag. This will skip blocks that return a
 {% endblocks %}
 ```
 
+### Variables
 
-**Data available in the loop**
+The following variables are available inside the `{% blocks %}` tag.
 
 | Variable        | Value |
 | --------------- | ----- |
@@ -115,11 +111,12 @@ You can use `skip empty` in the opening tag. This will skip blocks that return a
 | loop.last       | True if last iteration |
 | loop.length     | The number of items in the sequence |
 
-
 ### Manually Parsing Blocks
+
 If you don't want to use the Twig tag, blocks can be parsed manually using `craft.blocky` service. Internally this consumes the same `Blocky::$plugin->parseBlocks()` method. This method allows you to check `blocks.hasBlocks` before the for loop.
 
 **Example:**
+
 ```twig
 {% set blocks = craft.blocky.parseBlocks(entry.blockComponents) %}
 {% if blocks.hasBlocks %}
@@ -134,8 +131,10 @@ If you don't want to use the Twig tag, blocks can be parsed manually using `craf
 ```
 
 ## Block Parser Roadmap
+
 Some things to do, and ideas for potential features:
 
 * Testing 🔥
+* Nested blocks with the release of CraftCMS 4.0
 
 Brought to you by [Callum Bonnyman](https://bloke.blog)
