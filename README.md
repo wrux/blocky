@@ -103,21 +103,19 @@ an empty context.
 
 The following variables are available inside the `{% blocks %}` tag.
 
-| Variable        | Value |
-| --------------- | ----- |
-| block           | The block object. |
-| template        | The data returned from the `getTemplate()` method |
-| type            | The value returned from the `getType()` method |
-| context         | The context returned from the `getContext()` method |
-| loop.index      | The current iteration of the loop. (1 indexed) |
-| loop.index0     | The current iteration of the loop. (0 indexed) |
-| loop.revindex   |
-  The number of iterations from the end of the loop (1 indexed) |
-| loop.revindex0  |
-  The number of iterations from the end of the loop (0 indexed) |
-| loop.first      | True if first iteration |
-| loop.last       | True if last iteration |
-| loop.length     | The number of items in the sequence |
+| Variable        | Value                                                         |
+| --------------- | --------------------------------------------------------------|
+| block           | The block object                                              |
+| template        | The data returned from the `getTemplate()` method             |
+| type            | The value returned from the `getType()` method                |
+| context         | The context returned from the `getContext()` method           |
+| loop.index      | The current iteration of the loop. (1 indexed)                |
+| loop.index0     | The current iteration of the loop. (0 indexed)                |
+| loop.revindex   | The number of iterations from the end of the loop (1 indexed) |
+| loop.revindex0  | The number of iterations from the end of the loop (0 indexed) |
+| loop.first      | True if first iteration                                       |
+| loop.last       | True if last iteration                                        |
+| loop.length     | The number of items in the sequence                           |
 
 ### Manually Parsing Blocks
 
