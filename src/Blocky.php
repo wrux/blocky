@@ -3,9 +3,9 @@
 namespace wrux\blocky;
 
 use Craft;
+use craft\base\Element;
 use craft\base\Plugin;
 use craft\elements\db\MatrixBlockQuery;
-use craft\elements\MatrixBlock;
 use craft\web\twig\variables\CraftVariable;
 use wrux\blocky\twig\BlocksTwigExtension;
 use yii\base\Event;
@@ -81,7 +81,7 @@ class Blocky extends Plugin
     }
     $block_parser = new BlockParser;
     foreach ($blocks as $block) {
-      if (!$block instanceof MatrixBlock) {
+      if (!$block instanceof Element) {
         continue;
       }
       try {

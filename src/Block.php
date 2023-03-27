@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace wrux\blocky;
 
-use craft\elements\MatrixBlock;
+use craft\base\Element;
 
 /**
  * Abstract block class.
@@ -22,9 +22,9 @@ abstract class Block implements BlockInterface
   /**
    * Block data.
    *
-   * @var \craft\elements\MatrixBlock $block
+   * @var \craft\base\Element $block
    */
-  protected MatrixBlock $block;
+  protected Element $block;
 
   /**
    * Block template.
@@ -36,9 +36,9 @@ abstract class Block implements BlockInterface
   /**
    * Instansiate the block.
    *
-   * @param \craft\elements\MatrixBlock $block
+   * @param \craft\base\Element $block
    */
-  public function __construct(MatrixBlock $block)
+  public function __construct(Element $block)
   {
     $this->block = $block;
   }
