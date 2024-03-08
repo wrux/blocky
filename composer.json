@@ -3,13 +3,7 @@
   "description": "Map a matrix field into an array of blocks to render in twig.",
   "type": "craft-plugin",
   "version": "1.1.1",
-  "keywords": [
-    "craft",
-    "cms",
-    "craftcms",
-    "craft-plugin",
-    "block parser"
-  ],
+  "keywords": ["craft", "cms", "craftcms", "craft-plugin", "block parser"],
   "support": {
     "docs": "https://github.com/wrux/blocky/blob/master/README.md",
     "issues": "https://github.com/wrux/blocky/issues"
@@ -46,7 +40,11 @@
   },
   "config": {
     "platform": {
-      "php": "8.0.0"
+      "php": "8.0.2"
+    },
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
     }
   }
 }
