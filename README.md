@@ -1,3 +1,5 @@
+<img alt="Craft Class Variance Authority" src="resources/img/blocky.png" style="height:80px" />
+
 # Blocky Plugin for Craft CMS 3.x
 
 Utility plugin for Craft CMS to map Matrix fields.
@@ -15,15 +17,15 @@ To install the plugin, follow these instructions.
 
 1. Open your terminal and go to your Craft project:
 
-    ```bash
-    cd /path/to/project
-    ```
+   ```bash
+   cd /path/to/project
+   ```
 
 2. Then tell Composer to load the plugin:
 
-    ```bash
-    composer require wrux/blocky
-    ```
+   ```bash
+   composer require wrux/blocky
+   ```
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button
    for Blocky.
@@ -32,39 +34,39 @@ To install the plugin, follow these instructions.
 
 1. Create `config/blocks.php` inside your Craft project:
 
-    ```php
-    <?php
+   ```php
+   <?php
 
-    return [
-      'textBlock' => 'app\blocks\TextBlock',
-    ];
-    ```
+   return [
+     'textBlock' => 'app\blocks\TextBlock',
+   ];
+   ```
 
 2. Somewhere in your project, create block classes for each Matrix block which
    extends `wrux\blocky\Block`
 
-    Here's an example block:
+   Here's an example block:
 
-    ```php
-    <?php
+   ```php
+   <?php
 
-    namespace app\blocks;
+   namespace app\blocks;
 
-    use wrux\blocky\Block;
+   use wrux\blocky\Block;
 
-    class TextBlock extends Block {
+   class TextBlock extends Block {
 
-      public string $template = 'text.twig';
+     public string $template = 'text.twig';
 
-      public function getContext(): array {
-        return [
-          'text' => !empty($this->block->contentHtml)
-            ? $this->block->contentHtml->getParsedContent()
-            : NULL,
-        ];
-      }
-    }
-    ```
+     public function getContext(): array {
+       return [
+         'text' => !empty($this->block->contentHtml)
+           ? $this->block->contentHtml->getParsedContent()
+           : NULL,
+       ];
+     }
+   }
+   ```
 
 ## Templating
 
@@ -103,19 +105,19 @@ an empty context.
 
 The following variables are available inside the `{% blocks %}` tag.
 
-| Variable        | Value                                                         |
-| --------------- | --------------------------------------------------------------|
-| block           | The block object                                              |
-| template        | The data returned from the `getTemplate()` method             |
-| type            | The value returned from the `getType()` method                |
-| context         | The context returned from the `getContext()` method           |
-| loop.index      | The current iteration of the loop. (1 indexed)                |
-| loop.index0     | The current iteration of the loop. (0 indexed)                |
-| loop.revindex   | The number of iterations from the end of the loop (1 indexed) |
-| loop.revindex0  | The number of iterations from the end of the loop (0 indexed) |
-| loop.first      | True if first iteration                                       |
-| loop.last       | True if last iteration                                        |
-| loop.length     | The number of items in the sequence                           |
+| Variable       | Value                                                         |
+| -------------- | ------------------------------------------------------------- |
+| block          | The block object                                              |
+| template       | The data returned from the `getTemplate()` method             |
+| type           | The value returned from the `getType()` method                |
+| context        | The context returned from the `getContext()` method           |
+| loop.index     | The current iteration of the loop. (1 indexed)                |
+| loop.index0    | The current iteration of the loop. (0 indexed)                |
+| loop.revindex  | The number of iterations from the end of the loop (1 indexed) |
+| loop.revindex0 | The number of iterations from the end of the loop (0 indexed) |
+| loop.first     | True if first iteration                                       |
+| loop.last      | True if last iteration                                        |
+| loop.length    | The number of items in the sequence                           |
 
 ### Manually Parsing Blocks
 
@@ -143,7 +145,7 @@ If you don't want to use the Twig tag, blocks can be parsed manually using
 
 Some things to do, and ideas for potential features:
 
-* Testing 🔥
-* Nested blocks with the release of CraftCMS 4.0.
+- Testing 🔥
+- Nested blocks with the release of CraftCMS 4.0.
 
 Brought to you by [Callum Bonnyman](https://bloke.blog)
